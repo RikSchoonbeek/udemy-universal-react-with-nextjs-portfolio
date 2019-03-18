@@ -1,12 +1,28 @@
+import { Component } from "react";
 import Layout from "../components/Layout";
+import fetch from "isomorphic-unfetch";
 
-const About = () => {
-  return (
-    <Layout title="About">
-      <p>Something here</p>
-      <img src="/static/31hTYwkQqnL.jpg" alt="" height="200px" />
-    </Layout>
-  );
-};
+class About extends Component {
+  // state = {
+  //   user: null
+  // };
+
+  static async getInitialProps() {
+    const res = await fetch("https://api.github.com/users/reedbarger");
+    const data = await res.json();
+
+    return { user: data };
+  }
+
+  render() {
+    const { user } = this.props;
+    return (
+      <Layout title="About">
+        <p>{user.name}</p>
+        <img src={user.avatar_url} alt="Rikkert" height="200px" />
+      </Layout>
+    );
+  }
+}
 
 export default About;
