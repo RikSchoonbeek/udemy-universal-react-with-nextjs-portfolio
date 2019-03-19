@@ -9,7 +9,7 @@ class About extends Component {
   // };
 
   static async getInitialProps() {
-    const res = await fetch("https://api.github.com/users/reedbarger23424");
+    const res = await fetch("https://api.github.com/users/rikschoonbeek");
 
     // a 200 status code is a success,  but for fetching data,
     // anything higher than 200 is an error.
